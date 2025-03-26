@@ -1,19 +1,21 @@
 # How to use
 進入到'isaac_ros2_nav2_create_images_file'floder，執行以下
-
+```
 docker build -t isaac_sim_lab_ros .
-
+```
 # 啟動容器方法
 
 # for test
+```
 docker run --name isaac_sim_lab_container \
     --gpus '"device=0"' \
     -it --rm \
     --network=host \
     --env-file .env \
     isaac_sim_lab_ros:latest
-
+```
 # example1
+```
 docker run --name isaac_sim_lab_container \
     --gpus '"device=0"' \
     -it --rm \
@@ -30,8 +32,9 @@ docker run --name isaac_sim_lab_container \
     -v /media/Pluto/binghua/Isaac_sim_other_resource:/isaac-sim/Isaac_sim_other_resource:rw \
     -v /media/Pluto/binghua/TSMC_docker/IsaacLab:/opt/IsaacLab/:rw \
     isaac_sim_lab_ros:latest
-
+```
 # example2
+```
 docker run --name isaac_sim_lab_container \
     --gpus '"device=0"' \
     -it --rm \
@@ -48,18 +51,23 @@ docker run --name isaac_sim_lab_container \
     -v /Path/to/User/docker/Isaac_sim_other_resource:/isaac-sim/Isaac_sim_other_resource:rw \
     -v /Path/to/User/docker/IsaacLab:/opt/IsaacLab/:rw \
     isaac_sim_lab_ros:latest
-
+```
 # 如果X11vnc沒有自動啟動
 執行:
+```
 /opt/startup/start_xvfb_vnc.sh
-
+```
 # 測試ROS2與X11正確啟用
-
+```
 echo $DISPLAY
+```
 如果輸出不是':1'，請手動設定
+```
 export DISPLAY=:1
+```
 
 啟動ROS2測試
+```
 ros2 run rviz2 rviz2
-
+```
 
