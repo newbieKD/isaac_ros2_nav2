@@ -71,3 +71,13 @@ export DISPLAY=:1
 ros2 run rviz2 rviz2
 ```
 
+# 測試Isaac sim與ROS2連接
+啟動Isaac sim
+```
+./runheadless.sh
+```
+查看ROS2 topic
+```
+ros2 topic list
+```
+
