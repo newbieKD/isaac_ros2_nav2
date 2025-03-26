@@ -3,6 +3,11 @@
 ```
 docker build -t isaac_sim_lab_ros .
 ```
+
+# Local PC install RealVNC Viewer
+* [RealVNC offical](https://www.realvnc.com/en/connect/download/viewer/windows/)
+Notice : No registration required
+
 # 啟動容器方法
 
 # for test
