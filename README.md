@@ -1,5 +1,5 @@
 # How to use
-進入到'isaac_ros2_nav2_create_images_file'floder，執行以下
+進入到'isaac_ros2_nav2'floder，執行以下
 ```
 docker build -t isaac_sim_lab_ros2_nav2 .
 ```
