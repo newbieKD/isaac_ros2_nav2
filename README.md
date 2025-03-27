@@ -1,7 +1,7 @@
 # How to use
 進入到'isaac_ros2_nav2_create_images_file'floder，執行以下
 ```
-docker build -t isaac_sim_lab_ros .
+docker build -t isaac_sim_lab_ros2_nav2 .
 ```
 
 # Local PC install RealVNC Viewer
@@ -17,7 +17,7 @@ docker run --name isaac_sim_lab_container \
     -it --rm \
     --network=host \
     --env-file .env \
-    isaac_sim_lab_ros:latest
+    isaac_sim_lab_ros2_nav2:latest
 ```
 # example1
 ```
@@ -36,7 +36,7 @@ docker run --name isaac_sim_lab_container \
     -v /media/Pluto/binghua/TSMC_docker/isaac-sim/documents:/root/Documents:rw \
     -v /media/Pluto/binghua/Isaac_sim_other_resource:/isaac-sim/Isaac_sim_other_resource:rw \
     -v /media/Pluto/binghua/TSMC_docker/IsaacLab:/opt/IsaacLab/:rw \
-    isaac_sim_lab_ros:latest
+    isaac_sim_lab_ros2_nav2:latest
 ```
 # example2
 ```
@@ -55,7 +55,11 @@ docker run --name isaac_sim_lab_container \
     -v /Path/to/User/docker/isaac-sim/documents:/root/Documents:rw \
     -v /Path/to/User/docker/Isaac_sim_other_resource:/isaac-sim/Isaac_sim_other_resource:rw \
     -v /Path/to/User/docker/IsaacLab:/opt/IsaacLab/:rw \
-    isaac_sim_lab_ros:latest
+    isaac_sim_lab_ros2_nav2:latest
+```
+# For Isaac Lab git 
+```
+git config --global --add safe.directory /opt/IsaacLab
 ```
 # 如果X11vnc沒有自動啟動
 執行:
@@ -85,4 +89,5 @@ ros2 run rviz2 rviz2
 ```
 ros2 topic list
 ```
+
 

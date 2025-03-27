@@ -70,7 +70,9 @@ RUN apt-get update && apt-get install -y --allow-downgrades libbrotli1=1.0.9-2bu
 RUN apt-get install -y --no-install-recommends \
     ros-humble-desktop \
     ros-humble-navigation2 \
-    ros-humble-nav2-bringup 
+    ros-humble-nav2-bringup \
+    ros-humble-vision-msgs \
+    ros-humble-ackermann-msgs
     # ros-humble-ros2-bridge
 
 # 設定 ROS2 環境變數
@@ -93,11 +95,46 @@ RUN apt-get update && apt-get install -y \
 
 RUN apt-get update && apt-get install -y python3-colcon-common-extensions
 
-WORKDIR /opt/ros2_ws
-RUN mkdir -p /opt/ros2_ws/src && cd /opt/ros2_ws && colcon build
+
+
+
+# ------------------------------------------------------
+# Old : Not correctly for tutorials workspaces
+# ------------------------------------------------------
+# WORKDIR /opt/ros2_ws
+
+# RUN mkdir -p /opt/ros2_ws/src && cd /opt/ros2_ws && colcon build
+
+# # 設定 ROS2 工作區環境變數
+# RUN echo "source /opt/ros2_ws/install/setup.bash" >> /root/.bashrc
+
+
+
+# ------------------------------------------------------
+# update to isaac sim & ROS2 tutorials workspaces
+# ------------------------------------------------------
+# Clone the ROS2 workspace for Isaac Sim
+WORKDIR /opt
+RUN git clone https://github.com/isaac-sim/IsaacSim-ros_workspaces.git
+
+# Move the workspace to /opt
+RUN mv IsaacSim-ros_workspaces/humble_ws /opt/
+
+# Remove the other file
+RUN rm -rf /opt/IsaacSim-ros_workspaces
+
+# Create a workspace for original ROS2 workspaces and download dependencies
+RUN rosdep init && \
+    rosdep update || echo "rosdep update failed, check network"
+RUN bash -c "source /opt/ros/humble/setup.bash && \
+        cd /opt/humble_ws && \
+        rosdep install -i --from-path src --rosdistro humble -y && \
+        colcon build"
 
 # 設定 ROS2 工作區環境變數
-RUN echo "source /opt/ros2_ws/install/setup.bash" >> /root/.bashrc
+RUN echo "source /opt/humble_ws/install/local_setup.bash" >> /root/.bashrc
+
+
 
 # -----------------------------------------------------
 # 設定啟動 Xvfb 與 VNC 的腳本（用於 headless 的 GUI 轉發）
