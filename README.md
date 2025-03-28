@@ -84,22 +84,6 @@ docker run --name isaac_sim_lab_container \
 git config --global --add safe.directory /opt/IsaacLab
 ```
 
-## VSCode Remote Connection
-
-*   Ensure the VSCode Remote - Containers extension is installed and enabled.
-*   **Network Configuration:**
-    *   If using `--network=host`, be aware that this can sometimes cause conflicts with VSCode's connection.
-    *   Consider using a bridge network instead. If so, create a bridge network: `docker network create my_network`. Then, run the container with `--network my_network`.
-    *   When using a bridge network, you'll need to map the necessary ports. For example, add `-p 5900:5900` to your `docker run` command to map the VNC port. VSCode also requires a range of ports for its server.
-*   **Firewall:**
-    *   Ensure that no firewalls (either on your host machine or network) are blocking the connection to the container on the mapped ports.
-*   **User Permissions:**
-    *   Verify that the user inside the container has the correct permissions to access the workspace directory (`/opt/IsaacLab` in your case).
-*   **VSCode Settings:**
-    *   Check your VSCode settings for any configurations that might be interfering with the Remote - Containers extension. Specifically, look for proxy settings if you are behind a proxy.
-*   **Docker Context:**
-    *   Make sure VSCode is using the correct Docker context.
-*   **Rebuild Container:** Sometimes, simply rebuilding the container can resolve connection issues. Try "Remote-Containers: Rebuild Container" in VSCode.
 
 ## Testing
 
