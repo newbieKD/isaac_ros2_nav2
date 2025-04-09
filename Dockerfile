@@ -154,6 +154,14 @@ COPY init_services.sh /opt/startup/init_services.sh
 RUN chmod +x /opt/startup/init_services.sh
 
 # -----------------------------------------------------
+# 安裝 Node.js 和 npm for github copilot
+# -----------------------------------------------------
+# 使用 NodeSource 官方腳本安裝最新的 LTS 版本
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
+
+# -----------------------------------------------------
 # 默認工作目錄與啟動命令
 # -----------------------------------------------------
 WORKDIR /opt/IsaacLab
