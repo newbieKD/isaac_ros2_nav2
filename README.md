@@ -40,7 +40,7 @@ docker run --name isaac_sim_lab_container \
 
 ```bash
 docker run --name isaac_sim_lab_container \
-    --gpus '"device=0"' \
+    --gpus '"device=1"' \
     -it --rm \
     --network=host \
     --env-file .env \
@@ -54,7 +54,8 @@ docker run --name isaac_sim_lab_container \
     -v /media/Pluto/binghua/TSMC_docker/isaac-sim/documents:/root/Documents:rw \
     -v /media/Pluto/binghua/Isaac_sim_other_resource:/isaac-sim/Isaac_sim_other_resource:rw \
     -v /media/Pluto/binghua/TSMC_docker/IsaacLab:/opt/IsaacLab/:rw \
-    isaac_sim_lab_ros2_nav2:latest
+    -v /media/Pluto/binghua/TSMC_docker/humble_ws:/opt/humble_ws/:rw \
+    isaac_sim_lab_ros2_nav2:Version
 ```
 
 #### Example 2 (Using User-Specific Paths)

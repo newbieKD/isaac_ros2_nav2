@@ -1,3 +1,4 @@
+# deprecated 的 xvfb 和 x11vnc 啟動腳本
 #!/bin/bash
 # 設定 DISPLAY，這裡假設使用 :0
 export DISPLAY=:1
