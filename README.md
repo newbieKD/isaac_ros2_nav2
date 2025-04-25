@@ -36,29 +36,7 @@ docker run --name isaac_sim_lab_container \
     isaac_sim_lab_ros2_nav2:latest
 ```
 
-#### Example 1 (Mounting Volumes)
-
-```bash
-docker run --name isaac_sim_lab_container \
-    --gpus '"device=1"' \
-    -it --rm \
-    --network=host \
-    --env-file .env \
-    -v /media/Pluto/binghua/TSMC_docker/isaac-sim/cache/kit:/isaac-sim/kit/cache:rw \
-    -v /media/Pluto/binghua/TSMC_docker/isaac-sim/cache/ov:/root/.cache/ov:rw \
-    -v /media/Pluto/binghua/TSMC_docker/isaac-sim/cache/pip:/root/.cache/pip:rw \
-    -v /media/Pluto/binghua/TSMC_docker/isaac-sim/cache/glcache:/root/.cache/nvidia/GLCache:rw \
-    -v /media/Pluto/binghua/TSMC_docker/isaac-sim/cache/computecache:/root/.nv/ComputeCache:rw \
-    -v /media/Pluto/binghua/TSMC_docker/isaac-sim/logs:/root/.nvidia-omniverse/logs:rw \
-    -v /media/Pluto/binghua/TSMC_docker/isaac-sim/data:/root/.local/share/ov/data:rw \
-    -v /media/Pluto/binghua/TSMC_docker/isaac-sim/documents:/root/Documents:rw \
-    -v /media/Pluto/binghua/Isaac_sim_other_resource:/isaac-sim/Isaac_sim_other_resource:rw \
-    -v /media/Pluto/binghua/TSMC_docker/IsaacLab:/opt/IsaacLab/:rw \
-    -v /media/Pluto/binghua/TSMC_docker/humble_ws:/opt/humble_ws/:rw \
-    isaac_sim_lab_ros2_nav2:Version
-```
-
-#### Example 2 (Using User-Specific Paths)
+#### Example  (Using User-Specific Paths)
 
 ```bash
 docker run --name isaac_sim_lab_container \
