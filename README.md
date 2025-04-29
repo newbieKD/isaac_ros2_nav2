@@ -100,8 +100,38 @@ git config --global --add safe.directory /opt/IsaacLab
     ros2 topic list
     ```
 
+
+
+## Creating Custom ROS 2 Package in Isaac Sim with Humble Workspace
+
+To create a custom ROS 2 package in Isaac Sim using the `humble_ws` workspace, follow this English version with optimized structure:
+### Initial File Structure
+
+```
+/opt/humble_ws/src/custom_package/
+├── package.xml
+├── CMakeLists.txt
+└── scripts/
+    └── custom_node.py
+```
+
+### Build Commands
+```bash
+cd /opt/humble_ws
+colcon build --packages-select custom_package
+source install/setup.bash
+```
+
+### Verification
+```bash
+ros2 pkg list | grep custom_package  # Should output 'custom_package'
+```
+
+
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
 
