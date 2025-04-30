@@ -114,6 +114,8 @@ To create a custom ROS 2 package in Isaac Sim using the `humble_ws` workspace, f
 └── scripts/
     └── custom_node.py
 ```
+### Edit CMakeLists.txt
+Add custom_node.py in install
 
 ### Build Commands
 ```bash
