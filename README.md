@@ -36,6 +36,12 @@ docker run --name isaac_sim_lab_container \
     isaac_sim_lab_ros2_nav2:latest
 ```
 
+or
+
+```bash
+./launch_script.sh 
+```
+
 #### Example  (Using User-Specific Paths)
 
 ```bash
