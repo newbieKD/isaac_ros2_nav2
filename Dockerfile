@@ -49,6 +49,9 @@ WORKDIR /opt/IsaacLab
 RUN ln -s /isaac-sim _isaac_sim
 RUN apt install cmake build-essential
 
+# 設定 Git safe directory 以避免權限問題
+RUN git config --global --add safe.directory /opt/IsaacLab
+
 # 執行 Isaac Lab 的安裝腳本，安裝必要依賴並編譯 Isaac Lab
 RUN ./isaaclab.sh --install
 
@@ -78,6 +81,10 @@ RUN apt-get install -y --no-install-recommends \
     ros-humble-nav2-bringup \
     ros-humble-vision-msgs \
     ros-humble-ackermann-msgs
+
+# 安裝 PyTorch with CUDA 11.8 support for ROS2 environment
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
 
 # 設定 ROS2 環境變數
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /root/.bashrc

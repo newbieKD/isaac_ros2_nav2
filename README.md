@@ -12,12 +12,24 @@ This project integrates Isaac Sim, Isaac Lab, ROS2 (Humble), and Nav2 to facilit
 
 ## Installation
 
+### Option 1: Build Docker Image
+
 1.  Navigate to the `isaac_ros2_nav2` directory.
 2.  Build the Docker image:
 
     ```bash
-    docker build -t isaac_sim_lab_ros2_nav2:1.0.0 .
+    docker build -t isaac_sim_lab_ros2_nav2:0.0.0 .
     ```
+
+### Option 2: Download Pre-built Container
+
+Available container versions (Isaac Sim 4.5.0):
+
+| Version | Isaac Lab Version | Description |
+|---------|-------------------|-------------|
+| 1.0.0   | 2.0.0            | Initial release |
+| 2.0.0   | 2.1.0            | Updated Isaac Lab |
+| 2.1.0   | 2.1.0            | Added git configuration |
 
 ## Usage
 
@@ -38,6 +50,7 @@ docker run --name isaac_sim_lab_container \
 
 or
 
+`launch_script.sh` need to change the version you want to launch
 ```bash
 ./launch_script.sh 
 ```
@@ -64,6 +77,8 @@ docker run --name isaac_sim_lab_container \
 ```
 
 ### Isaac Lab Git Configuration
+
+* IF version < 2.1.0
 
 ```bash
 git config --global --add safe.directory /opt/IsaacLab
@@ -98,6 +113,11 @@ git config --global --add safe.directory /opt/IsaacLab
 
     ```bash
     ./runheadless.sh
+    ```
+
+    Specify the GPU to use
+    ```bash
+    CUDA_VISIBLE_DEVICES=2 ./isaac-sim.streaming.sh
     ```
 
 2.  Check ROS2 topics:
