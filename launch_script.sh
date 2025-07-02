@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-GPU="device=1"
+GPU='"device=0,1,2"'
 echo "GPU: $GPU"
 
-IMAGES_VERSION="1.0.0"
+IMAGES_VERSION="2.1.0"
 echo "IMAGES_VERSION: $IMAGES_VERSION"
 
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
