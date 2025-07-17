@@ -31,6 +31,7 @@ Available container versions (Isaac Sim 4.5.0):
 | 2.0.0   | 2.1.0            | Updated Isaac Lab |
 | 2.1.0   | 2.1.0            | Added git configuration |
 | 2.2.0   | 2.1.0            | Added none-root user |
+| 2.4.0   | 2.1.0            | Fix issue |
 
 ## Usage
 
