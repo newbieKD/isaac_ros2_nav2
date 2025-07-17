@@ -155,7 +155,8 @@ source install/setup.bash
 ```bash
 ros2 pkg list | grep custom_package  # Should output 'custom_package'
 ```
-
+## Reference
+[Isaac Sim Pipeline Documentation](https://hackmd.io/jbBMe9ykQ5-ySglpPR_OZg)
 
 
 ## License
