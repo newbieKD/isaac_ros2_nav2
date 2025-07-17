@@ -14,11 +14,11 @@ This project integrates Isaac Sim, Isaac Lab, ROS2 (Humble), and Nav2 to facilit
 
 ### Option 1: Build Docker Image
 
-1.  Navigate to the `isaac_ros2_nav2` directory.
+1.  Navigate to the `isaac_ros2_nav2/docker` directory.
 2.  Build the Docker image:
 
     ```bash
-    docker build -t isaac_sim_lab_ros2_nav2:2.1.0 .
+    docker build -t isaac_sim_lab_ros2_nav2:2.2.0 .
     ```
 
 ### Option 2: Download Pre-built Container
@@ -30,6 +30,7 @@ Available container versions (Isaac Sim 4.5.0):
 | 1.0.0   | 2.0.0            | Initial release |
 | 2.0.0   | 2.1.0            | Updated Isaac Lab |
 | 2.1.0   | 2.1.0            | Added git configuration |
+| 2.2.0   | 2.1.0            | Added none-root user |
 
 ## Usage
 
