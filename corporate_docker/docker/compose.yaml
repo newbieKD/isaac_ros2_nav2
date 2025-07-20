@@ -45,7 +45,7 @@ services:
       # cache_from:
       #   - j3soon/ros2-h1-ws:buildcache-amd64
       #   - j3soon/ros2-h1-ws:buildcache-arm64
-    image: newbieKD/isaac_sim_lab_ros2_nav2:3.0.0
+    image: newbieKD/isaac_sim_lab_ros2_nav2:3.1.0
     container_name: isaac-workspace
     stdin_open: true
     tty: true

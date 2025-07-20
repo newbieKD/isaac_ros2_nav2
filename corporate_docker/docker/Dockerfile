@@ -55,9 +55,10 @@ ENV ROS_DISTRO=$ROS_DISTRO
 # Copy and run ROS installation script
 COPY modules/install_ros.sh /tmp/install_ros.sh
 RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
-    /tmp/install_ros.sh && rm /tmp/install_ros.sh
+    /tmp/install_ros.sh && rm /tmp/install_ros.sh \
+    && chown -R $USERNAME:$USERNAME /opt/ros/$ROS_DISTRO
 
-RUN chown -R $USERNAME:$USERNAME /opt/ros/$ROS_DISTRO
+
 
 # Set the CycloneDDS configuration file
 ENV CYCLONEDDS_URI=/home/user/cyclonedds.xml
@@ -166,7 +167,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
     && sudo rm -rf /var/lib/apt/lists/*
 
 # TODO: Add more commands here
-RUN sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
+
 
 COPY --chown=$USERNAME:$USERNAME \
      .bashrc /home/$USERNAME/.bashrc
@@ -188,18 +189,22 @@ RUN $ISAACSIM_PYTHON_EXE -m pip install --force-reinstall --no-deps "numpy==1.26
 
 # remove NVIDIA ICD file to prevent Vulkan errors
 USER root
-RUN rm -f /etc/vulkan/icd.d/nvidia_icd.json || true
+RUN rm -f /etc/vulkan/icd.d/nvidia_icd.json || true \
+    && chown -R $USERNAME:$USERNAME /home/$USERNAME \
+    && mkdir -p /home/ros2-essentials \
+    && chown -R $USERNAME:$USERNAME /home/ros2-essentials \
+    && deluser $USERNAME sudo
 
 
 # RUN sudo chown -R $USERNAME:$USERNAME /home/$USERNAME/IsaacLab
 # RUN sudo chown -R $USERNAME:$USERNAME /home/$USERNAME/workspaces/isaac_ros-dev/
 # RUN sudo chown -R $USERNAME:$USERNAME /home/$USERNAME/isaacsim
-RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
+# RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
 
-RUN mkdir -p /home/ros2-essentials \
-    && chown -R $USERNAME:$USERNAME /home/ros2-essentials
+# RUN mkdir -p /home/ros2-essentials \
+#     && chown -R $USERNAME:$USERNAME /home/ros2-essentials
 # Remove sudo privileges from the user for security
-RUN deluser $USERNAME sudo
+# RUN deluser $USERNAME sudo
 
 USER $USERNAME
 
