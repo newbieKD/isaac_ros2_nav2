@@ -32,7 +32,8 @@ Available container versions (Isaac Sim 4.5.0):
 | 2.1.0   | 2.1.0            | Added git configuration |
 | 2.2.0   | 2.1.0            | Added none-root user |
 | 2.4.0   | 2.1.0            | Fix issue |
-| 3.0.0   | 2.1.0            | module_docker |
+| 3.0.0   | 2.1.0            | Module docker |
+| 3.1.0   | 2.1.0            | Slim down container |
 
 ## Version-Specific Setup Instructions
 
