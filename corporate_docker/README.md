@@ -1,4 +1,3 @@
-以下是你原始 README.md 的英文版，內容已完整翻譯，結構及區塊也與原本相同，適合企業環境與英文社群使用：
 
 ---
 
@@ -441,5 +440,3 @@ If you have questions or suggestions, please submit an Issue or Pull Request.
 **Last Updated**: July 2025
 
 ---
-
-Let me know if you want to further polish, condense, or adapt the text for specific audiences!
