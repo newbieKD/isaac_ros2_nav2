@@ -63,8 +63,7 @@ This project provides a **fully tested and enterprise-ready** Docker environment
 
 ```
 corporate_docker/
-├── README.md                               # This document
-├── VNC_README.md                           # Detailed VNC instructions
+├── README.md                               # This documenttions
 └── docker/
     ├── Dockerfile                          # Main Docker build file
     ├── compose.yaml                        # Docker Compose config
