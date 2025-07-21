@@ -62,7 +62,7 @@ This project provides a **fully tested and enterprise-ready** Docker environment
 ## 📁 File Structure
 
 ```
-h1_ws_corporate/
+corporate_docker/
 ├── README.md                               # This document
 ├── VNC_README.md                           # Detailed VNC instructions
 └── docker/
@@ -88,7 +88,7 @@ h1_ws_corporate/
 ### 1. Build the Image
 
 ```bash
-cd h1_ws_corporate/docker
+cd corporate_docker/docker
 docker compose build
 ```
 
@@ -102,7 +102,7 @@ docker compose up -d
 ### 3. Enter the Container
 
 ```bash
-docker compose exec h1-ws bash
+docker compose exec isaac-workspace bash
 ```
 
 ## 🧪 Complete Test Workflow
