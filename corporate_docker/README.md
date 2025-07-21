@@ -8,6 +8,17 @@
 [![Isaac Lab](https://img.shields.io/badge/Isaac%20Lab-2.1.0-blue)](https://isaac-sim.github.io/IsaacLab/)
 [![ROS2](https://img.shields.io/badge/ROS2-Humble-orange)](https://docs.ros.org/en/humble/)
 
+Modularize Isaac Container & Improvements Based on j3soon/ros2-essentials
+* Refactored the Docker environment to support modular installation scripts for Isaac Sim and related components, enabling flexible extension and easier maintenance.
+* Based on the original repository by [j3soon/ros2-essentials](https://github.com/j3soon/ros2-essentials/tree/main) with the following enhancements:
+  * **Fixed**: Isaac Sim numpy version compatibility issue.
+  * **Fixed**: Multi-GPU detection and initialization issues.
+  * **Added**: Pre-installation of required machine learning libraries (e.g., torch, etc.) for Isaac Sim & IsaacLab.
+  * **Added**: Nav2 package installation for ROS2 navigation support.
+  * **Added**: X11 VNC support for remote GUI access.
+  * **Added**: Default user password set to `0000` for easier initial access.
+  * **Changed**: Removed `sudo` privileges from the container user for better security and enterprise compliance.
+
 ## 📑 Table of Contents
 
 * [Requirements](#requirements)
