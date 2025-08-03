@@ -111,7 +111,8 @@ docker run --rm -it \
   --runtime=nvidia \
   --network=host \
   --user 1017:1017 \
-  newbieKD/isaac_sim_lab_ros2_nav2:3.0.0 bash
+  ghcr.io/newbiekd/isaac_ros2_nav2:3.1.0 bash
+  
 ```
 
 **驗證項目**:
