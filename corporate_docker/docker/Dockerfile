@@ -192,8 +192,8 @@ USER root
 RUN rm -f /etc/vulkan/icd.d/nvidia_icd.json || true \
     && chown -R $USERNAME:$USERNAME /home/$USERNAME \
     && mkdir -p /home/ros2-essentials \
-    && chown -R $USERNAME:$USERNAME /home/ros2-essentials \
-    && deluser $USERNAME sudo
+    && chown -R $USERNAME:$USERNAME /home/ros2-essentials 
+    # && deluser $USERNAME sudo
 
 
 # RUN sudo chown -R $USERNAME:$USERNAME /home/$USERNAME/IsaacLab

@@ -174,22 +174,22 @@ services:
       # TODO: Add more volume mounts here.
       # Mount root workspace to allow easy access to all workspaces.
       - ../..:/home/ros2-essentials
-      - ../../isaac-sim/cache/kit:/home/user/isaacsim/kit/cache:rw
-      - ../../isaac-sim/cache/ov:/home/user/.cache/ov:rw
-      - ../../isaac-sim/cache/pip:/home/user/.cache/pip:rw
-      - ../../isaac-sim/cache/glcache:/home/user/.cache/nvidia/GLCache:rw
-      - ../../isaac-sim/cache/computecache:/home/user/.nv/ComputeCache:rw
-      - ../../isaac-sim/logs:/home/user/.nvidia-omniverse/logs:rw
-      - ../../isaac-sim/data:/home/user/.local/share/ov/data:rw
-      - ../../isaac-sim/documents:/home/user/Documents:rw
-      - ../../IsaacLab/logs:/home/user/IsaacLab/logs:rw
-      - ../../usd_file:/home/user/.cache/usd_file:rw
-      - ../../IsaacLab/scripts:/home/user/IsaacLab/scripts:rw
-      - ../../IsaacLab/source:/home/user/IsaacLab/source:rw
-      - ../../humble_ws:/home/user/humble_ws:rw
-      - ../../Isaac_sim_other_resource:/home/user/isaacsim/Isaac_sim_other_resource:rw
-      - ../../overrides/isaac_sim_examples/humanoid_example.py:/home/user/isaacsim/exts/isaacsim.examples.interactive/isaacsim/examples/interactive/humanoid/humanoid_example.py:rw
-      - ../../overrides/isaac_sim_examples/h1.py:/home/user/isaacsim/exts/isaacsim.robot.policy.examples/isaacsim/robot/policy/examples/robots/h1.py:rw
+      # - ../../isaac-sim/cache/kit:/home/user/isaacsim/kit/cache:rw
+      # - ../../isaac-sim/cache/ov:/home/user/.cache/ov:rw
+      # - ../../isaac-sim/cache/pip:/home/user/.cache/pip:rw
+      # - ../../isaac-sim/cache/glcache:/home/user/.cache/nvidia/GLCache:rw
+      # - ../../isaac-sim/cache/computecache:/home/user/.nv/ComputeCache:rw
+      # - ../../isaac-sim/logs:/home/user/.nvidia-omniverse/logs:rw
+      # - ../../isaac-sim/data:/home/user/.local/share/ov/data:rw
+      # - ../../isaac-sim/documents:/home/user/Documents:rw
+      # - ../../IsaacLab/logs:/home/user/IsaacLab/logs:rw
+      # - ../../usd_file:/home/user/.cache/usd_file:rw
+      # - ../../IsaacLab/scripts:/home/user/IsaacLab/scripts:rw
+      # - ../../IsaacLab/source:/home/user/IsaacLab/source:rw
+      # - ../../humble_ws:/home/user/humble_ws:rw
+      # - ../../Isaac_sim_other_resource:/home/user/isaacsim/Isaac_sim_other_resource:rw
+      # - ../../overrides/isaac_sim_examples/humanoid_example.py:/home/user/isaacsim/exts/isaacsim.examples.interactive/isaacsim/examples/interactive/humanoid/humanoid_example.py:rw
+      # - ../../overrides/isaac_sim_examples/h1.py:/home/user/isaacsim/exts/isaacsim.robot.policy.examples/isaacsim/robot/policy/examples/robots/h1.py:rw
 # volumes:
 #   gazebo-cache:
 #     name: ros2-gazebo-cache

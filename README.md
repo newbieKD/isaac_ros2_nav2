@@ -34,6 +34,7 @@ Available container versions (Isaac Sim 4.5.0):
 | 2.4.0   | 2.1.0            | Fix issue |
 | 3.0.0   | 2.1.0            | Module docker |
 | 3.1.0   | 2.1.0            | Slim down container |
+| 3.2.0   | 2.1.0            | Add sudo |
 
 ## Version-Specific Setup Instructions
 
