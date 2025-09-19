@@ -49,7 +49,7 @@ Each version has detailed setup and usage instructions in their respective subdi
 
 **Note**: Each subdirectory contains version-specific Docker configurations, environment files, and detailed usage examples. Please refer to the appropriate README.md file based on your target version.
 
-
+> 📄 **Third-Party Code Notice**: This project includes components derived from the Isaac ROS Workspaces (humble_ws), which are licensed under the Apache 2.0 License. All original license files and notices are preserved in accordance with the upstream license requirements.
 
 
 ## Reference
