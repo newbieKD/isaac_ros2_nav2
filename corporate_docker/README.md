@@ -131,8 +131,6 @@ docker run --rm -it \
   --gpus all \
   --runtime=nvidia \
   --network=host \
-  -v /media/Pluto/binghua/isaac_ros2_nav2:/home/ros2-essentials:rw \
-  -v /media/Pluto/binghua/isaac_ros2_nav2/humble_ws:/home/user/humble_ws:rw \
   -e HOME=/home/user \
   -w /home/user \
   newbieKD/isaac_sim_lab_ros2_nav2:3.2.0 bash
