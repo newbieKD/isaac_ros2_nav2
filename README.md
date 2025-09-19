@@ -53,8 +53,8 @@ Each version has detailed setup and usage instructions in their respective subdi
 
 
 ## Reference
-[Isaac Sim Pipeline Documentation](https://hackmd.io/jbBMe9ykQ5-ySglpPR_OZg)
-[Env test Documentation](https://hackmd.io/@5iL7ddA_RuWVhFgwFXQa-g/HkRXOO9slg)
+- [Isaac Sim Pipeline Documentation](https://hackmd.io/jbBMe9ykQ5-ySglpPR_OZg)
+- [Env test Documentation](https://hackmd.io/@5iL7ddA_RuWVhFgwFXQa-g/HkRXOO9slg)
 
 ---
 
