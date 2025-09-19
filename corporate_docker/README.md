@@ -453,6 +453,6 @@ Open the following ports:
 If you have questions or suggestions, please submit an Issue or Pull Request.
 
 **Maintainer**: Binghua Cai
-**Last Updated**: July 2025
+**Last Updated**: September 2025
 
 ---

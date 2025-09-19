@@ -56,6 +56,18 @@ Each version has detailed setup and usage instructions in their respective subdi
 [Isaac Sim Pipeline Documentation](https://hackmd.io/jbBMe9ykQ5-ySglpPR_OZg)
 [Env test Documentation](https://hackmd.io/@5iL7ddA_RuWVhFgwFXQa-g/HkRXOO9slg)
 
+---
+
+## Support & Contribution
+
+If you have questions or suggestions, please submit an Issue or Pull Request.
+
+**Maintainer**: Binghua Cai
+**Last Updated**: September 2025
+
+---
+
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
