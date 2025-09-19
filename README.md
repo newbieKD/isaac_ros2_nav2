@@ -34,7 +34,7 @@ Available container versions (Isaac Sim 4.5.0):
 | 2.4.0   | 2.1.0            | Fix issue |
 | 3.0.0   | 2.1.0            | Module docker |
 | 3.1.0   | 2.1.0            | Slim down container |
-| 3.2.0   | 2.1.0            | Add sudo |
+| 3.2.0   | 2.1.0            | Add sudo user & ros2 package - pointcloud_to_laserscan|
 
 ## Version-Specific Setup Instructions
 
@@ -54,7 +54,7 @@ Each version has detailed setup and usage instructions in their respective subdi
 
 ## Reference
 [Isaac Sim Pipeline Documentation](https://hackmd.io/jbBMe9ykQ5-ySglpPR_OZg)
-
+[Env test Documentation](https://hackmd.io/@5iL7ddA_RuWVhFgwFXQa-g/HkRXOO9slg)
 
 ## License
 
