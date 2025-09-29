@@ -205,7 +205,9 @@ RUN $ISAACSIM_PYTHON_EXE -m pip install --force-reinstall --no-deps "numpy==1.26
 RUN rm -f /etc/vulkan/icd.d/nvidia_icd.json || true \
     && chown -R $USERNAME:$USERNAME /home/$USERNAME \
     && mkdir -p /home/ros2-essentials \
-    && chown -R $USERNAME:$USERNAME /home/ros2-essentials
+    && chown -R $USERNAME:$USERNAME /home/ros2-essentials 
+    # && deluser $USERNAME sudo
+
 
 
 # RUN sudo chown -R $USERNAME:$USERNAME /home/$USERNAME/IsaacLab

@@ -75,7 +75,8 @@ apt-get install -y \
     ros-$ROS_DISTRO-navigation2 \
     ros-$ROS_DISTRO-nav2-bringup \
     ros-$ROS_DISTRO-vision-msgs \
-    ros-$ROS_DISTRO-ackermann-msgs
+    ros-$ROS_DISTRO-ackermann-msgs \
+    ros-$ROS_DISTRO-pointcloud-to-laserscan
 
 
 # Initialize rosdep

@@ -34,6 +34,7 @@ Available container versions (Isaac Sim 4.5.0):
 | 2.4.0   | 2.1.0            | Fix issue |
 | 3.0.0   | 2.1.0            | Module docker |
 | 3.1.0   | 2.1.0            | Slim down container |
+| 3.2.0   | 2.1.0            | Add sudo user & ros2 package - pointcloud_to_laserscan|
 
 ## Version-Specific Setup Instructions
 
@@ -48,11 +49,23 @@ Each version has detailed setup and usage instructions in their respective subdi
 
 **Note**: Each subdirectory contains version-specific Docker configurations, environment files, and detailed usage examples. Please refer to the appropriate README.md file based on your target version.
 
-
+> 📄 **Third-Party Code Notice**: This project includes components derived from the Isaac ROS Workspaces (humble_ws), which are licensed under the Apache 2.0 License. All original license files and notices are preserved in accordance with the upstream license requirements.
 
 
 ## Reference
-[Isaac Sim Pipeline Documentation](https://hackmd.io/jbBMe9ykQ5-ySglpPR_OZg)
+- [Isaac Sim Pipeline Documentation](https://hackmd.io/jbBMe9ykQ5-ySglpPR_OZg)
+- [Env test Documentation](https://hackmd.io/@5iL7ddA_RuWVhFgwFXQa-g/HkRXOO9slg)
+
+---
+
+## Support & Contribution
+
+If you have questions or suggestions, please submit an Issue or Pull Request.
+
+**Maintainer**: Binghua Cai
+**Last Updated**: September 2025
+
+---
 
 
 ## License

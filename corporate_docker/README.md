@@ -105,7 +105,7 @@ docker compose build
 ### 2. Start the Container (Development Mode)
 
 ```bash
-xhost +local:docker
+xhost +local:docker # For X11 forwarding (optional)
 docker compose up -d
 ```
 
@@ -113,10 +113,12 @@ docker compose up -d
 
 ```bash
 docker compose exec h1-ws bash
+
 ```
 or
 ```bash
 docker exec -it isaac-workspace bash
+
 ```
 
 ## 🧪 Complete Test Workflow
@@ -128,13 +130,17 @@ docker exec -it isaac-workspace bash
 Start the container in non-root user mode to meet enterprise security requirements:
 
 ```bash
+cd /path/to/isaac_ros2_nav2/corporate_docker/docker
+
 # Start container in pure User Mode (UID:1017)
 docker run --rm -it \
   --gpus all \
   --runtime=nvidia \
   --network=host \
-  --user 1017:1017 \
-  newbieKD/isaac_sim_lab_ros2_nav2:3.1.0 bash
+  -e HOME=/home/user \
+  -w /home/user \
+  newbieKD/isaac_sim_lab_ros2_nav2:3.2.0 bash
+
 ```
 
 **Checklist:**
@@ -451,6 +457,6 @@ Open the following ports:
 If you have questions or suggestions, please submit an Issue or Pull Request.
 
 **Maintainer**: Binghua Cai
-**Last Updated**: July 2025
+**Last Updated**: September 2025
 
 ---
