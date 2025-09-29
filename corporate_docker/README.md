@@ -113,6 +113,12 @@ docker compose up -d
 
 ```bash
 docker compose exec h1-ws bash
+
+```
+or
+```bash
+docker exec -it isaac-workspace bash
+
 ```
 
 ## 🧪 Complete Test Workflow
