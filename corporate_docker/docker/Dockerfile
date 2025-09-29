@@ -119,8 +119,8 @@ RUN mkdir -p /home/$USERNAME/.vnc \
 
 USER root
 # Isaac Sim version configuration
-# ARG ISAAC_SIM_VERSION=4.5.0
-ARG ISAAC_SIM_VERSION=5.0.0
+ARG ISAAC_SIM_VERSION=4.5.0
+# ARG ISAAC_SIM_VERSION=5.0.0
 # Ref: https://isaac-sim.github.io/IsaacLab/v2.1.0/source/setup/installation/binaries_installation.html
 ENV ISAACSIM_PATH="/home/$USERNAME/isaacsim"
 # Copy and run Isaac Sim installation script
