@@ -30,7 +30,7 @@ if [ -z "$ISAACLAB_PATH" ]; then
 fi
 
 echo "Installing Isaac Lab for architecture: $TARGETARCH"
-echo "Isaac Lab version: $ISAAC_LAB_VERSION"
+# echo "Isaac Lab version: $ISAAC_LAB_VERSION"
 
 # Only install Isaac Lab on amd64 architecture
 if [ "$TARGETARCH" != "amd64" ]; then
@@ -38,20 +38,23 @@ if [ "$TARGETARCH" != "amd64" ]; then
     exit 0
 fi
 
-if [ "$ISAAC_LAB_VERSION" = "2.1.0" ]; then
-    echo "Installing Isaac Lab 2.1.0..."
-    # Ref: https://isaac-sim.github.io/IsaacLab/v2.1.0/source/setup/installation/binaries_installation.html
-    sudo apt-get update && sudo apt-get install -y \
-        cmake build-essential \
-        && sudo rm -rf /var/lib/apt/lists/* \
-        || exit 1
-    git clone -b v2.1.0 https://github.com/isaac-sim/IsaacLab.git "$ISAACLAB_PATH" \
-        && cd "$ISAACLAB_PATH" \
-        && ln -s "$ISAACSIM_PATH" _isaac_sim \
-        && ./isaaclab.sh --install \
-        || exit 1
+if [ "$ISAAC_SIM_VERSION" = "4.5.0" ]; then
+    ISAAC_LAB_VERSION="2.1.0"
+elif [ "$ISAAC_SIM_VERSION" = "5.0.0" ]; then
+    ISAAC_LAB_VERSION="2.2.0"
 else
-    echo "Error: Unsupported Isaac Lab version: $ISAAC_LAB_VERSION"
+    echo "Error: Unsupported Isaac Sim version: $ISAAC_LAB_VERSION"
     exit 1
 fi
+
+echo "Installing Isaac Lab $ISAAC_LAB_VERSION..."
+sudo apt-get update && sudo apt-get install -y \
+    cmake build-essential \
+    && sudo rm -rf /var/lib/apt/lists/* \
+    || exit 1
+git clone --branch "v$ISAAC_LAB_VERSION" https://github.com/isaac-sim/IsaacLab.git "$ISAACLAB_PATH" \
+    && cd "$ISAACLAB_PATH" \
+    && ln -s "$ISAACSIM_PATH" _isaac_sim \
+    && bash ./isaaclab.sh --install \
+    || exit 1
 echo "Isaac Lab installation completed successfully!"

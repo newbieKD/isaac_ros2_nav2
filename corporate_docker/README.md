@@ -112,7 +112,11 @@ docker compose up -d
 ### 3. Enter the Container
 
 ```bash
-docker compose exec isaac-workspace bash
+docker compose exec h1-ws bash
+```
+or
+```bash
+docker exec -it isaac-workspace bash
 ```
 
 ## 🧪 Complete Test Workflow

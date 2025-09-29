@@ -69,6 +69,36 @@ if [ "$ISAAC_SIM_VERSION" = "4.5.0" ]; then
     # Note: Optional dependencies and the Isaac Sim ROS workspace are not installed to minimize image size
     # Ref: https://docs.isaacsim.omniverse.nvidia.com/4.5.0/installation/install_ros.html#running-native-ros
     # Ref: https://docs.isaacsim.omniverse.nvidia.com/4.5.0/installation/install_ros.html#setting-up-workspaces
+
+elif [ "$ISAAC_SIM_VERSION" = "5.0.0" ]; then
+    echo "=== Installing Isaac Sim Compatibility Checker 5.0.0 ==="
+
+    # check Python version
+    python3 -V | grep "Python 3.10" || { echo "Python 3.10 is required for Isaac Sim 5.0"; exit 1; }
+
+    # install Compatibility Checker
+    cd /tmp || exit 1
+    wget https://download.isaacsim.omniverse.nvidia.com/isaac-sim-comp-check-5.0.0-linux-x86_64.zip \
+        || { echo "Failed to download Compatibility Checker"; exit 1; }
+    unzip -q isaac-sim-comp-check-5.0.0-linux-x86_64.zip -d ~/isaac-sim-comp-check \
+        || { echo "Failed to unzip Compatibility Checker"; exit 1; }
+    rm -f isaac-sim-comp-check-5.0.0-linux-x86_64.zip
+
+    echo "=== Installing Isaac Sim 5.0.0 ==="
+    cd /tmp || exit 1
+    wget https://download.isaacsim.omniverse.nvidia.com/isaac-sim-standalone-5.0.0-linux-x86_64.zip \
+        || { echo "Failed to download Isaac Sim 5.0"; exit 1; }
+    7z x isaac-sim-standalone-5.0.0-linux-x86_64.zip -o"$ISAACSIM_PATH" \
+        || { echo "Failed to unzip Isaac Sim 5.0"; exit 1; }
+    rm -f isaac-sim-standalone-5.0.0-linux-x86_64.zip
+
+    # check post_install.sh can run
+    cd "$ISAACSIM_PATH" || { echo "Isaac Sim path does not exist: $ISAACSIM_PATH"; exit 1; }
+    chmod +x post_install.sh
+    echo "=== Running post_install.sh ==="
+    ./post_install.sh || { echo "post_install.sh failed"; exit 1; }
+    echo "=== Finished post_install.sh ==="
+
 else
     echo "Error: Unsupported Isaac Sim version: $ISAAC_SIM_VERSION"
     exit 1

@@ -41,6 +41,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
     vim \
     wget \
     zip \
+    p7zip-full \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python pip
@@ -54,6 +55,7 @@ ARG ROS_DISTRO=humble
 ENV ROS_DISTRO=$ROS_DISTRO
 # Copy and run ROS installation script
 COPY modules/install_ros.sh /tmp/install_ros.sh
+RUN chmod +x /tmp/install_ros.sh
 RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
     /tmp/install_ros.sh && rm /tmp/install_ros.sh \
     && chown -R $USERNAME:$USERNAME /opt/ros/$ROS_DISTRO
@@ -70,11 +72,13 @@ ENV NVIDIA_DRIVER_CAPABILITIES=all
 
 # Install GUI debugging tools and configure Vulkan
 COPY modules/install_x11_opengl_vulkan.sh /tmp/install_x11_opengl_vulkan.sh
+RUN chmod +x /tmp/install_x11_opengl_vulkan.sh
 RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
     /tmp/install_x11_opengl_vulkan.sh && rm /tmp/install_x11_opengl_vulkan.sh
 
 # Install X11VNC and Xvfb for remote desktop access
 COPY modules/install_vnc.sh /tmp/install_vnc.sh
+RUN chmod +x /tmp/install_vnc.sh
 RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
     /tmp/install_vnc.sh && rm /tmp/install_vnc.sh
 
@@ -82,6 +86,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
 ARG CUDA_TOOLKIT_VERSION=""
 # Copy and run CUDA Toolkit installation script
 COPY modules/install_cuda_toolkit.sh /tmp/install_cuda_toolkit.sh
+RUN chmod +x /tmp/install_cuda_toolkit.sh
 RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
     /tmp/install_cuda_toolkit.sh && rm /tmp/install_cuda_toolkit.sh
 # Ref: https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#post-installation-actions
@@ -112,13 +117,16 @@ RUN mkdir /home/$USERNAME/.gazebo
 RUN mkdir -p /home/$USERNAME/.vnc \
     && mkdir -p /home/$USERNAME/.vnc/logs
 
+USER root
 # Isaac Sim version configuration
-ARG ISAAC_SIM_VERSION=4.5.0
+# ARG ISAAC_SIM_VERSION=4.5.0
+ARG ISAAC_SIM_VERSION=5.0.0
 # Ref: https://isaac-sim.github.io/IsaacLab/v2.1.0/source/setup/installation/binaries_installation.html
 ENV ISAACSIM_PATH="/home/$USERNAME/isaacsim"
 # Copy and run Isaac Sim installation script
 COPY --chown=$USERNAME:$USERNAME \
      modules/install_isaac_sim.sh /tmp/install_isaac_sim.sh
+RUN chmod +x /tmp/install_isaac_sim.sh
 RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
     --mount=type=cache,target=/home/$USERNAME/.cache/pip,sharing=private,uid=$USER_UID,gid=$USER_UID \
     /tmp/install_isaac_sim.sh && rm /tmp/install_isaac_sim.sh
@@ -138,11 +146,13 @@ ENV ISAACSIM_PYTHON_EXE="${ISAACSIM_PATH}/python.sh"
 #    'ansi+tabs': unknown terminal type.
 ENV TERM=xterm-256color
 # Isaac Lab version configuration
-ARG ISAAC_LAB_VERSION=2.1.0
+# 根據 ISAAC_LAB_VERSION 的版本改變 (in install_isaac_lab.sh)
+ARG ISAAC_LAB_VERSION=2.1.0 
 # Ref: https://isaac-sim.github.io/IsaacLab/v2.1.0/source/policy_deployment/00_hover/hover_policy.html
 ENV ISAACLAB_PATH="/home/$USERNAME/IsaacLab"
 COPY --chown=$USERNAME:$USERNAME \
      modules/install_isaac_lab.sh /tmp/install_isaac_lab.sh
+RUN chmod +x /tmp/install_isaac_lab.sh
 RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
     --mount=type=cache,target=/home/$USERNAME/.cache/pip,sharing=private,uid=$USER_UID,gid=$USER_UID \
     /tmp/install_isaac_lab.sh && rm /tmp/install_isaac_lab.sh
@@ -155,6 +165,7 @@ ENV ISAAC_ROS_WS="/home/$USERNAME/workspaces/isaac_ros-dev/"
 # Copy and run Isaac ROS installation script
 COPY --chown=$USERNAME:$USERNAME \
      modules/install_isaac_ros.sh /tmp/install_isaac_ros.sh
+RUN chmod +x /tmp/install_isaac_ros.sh
 RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
     /tmp/install_isaac_ros.sh && rm /tmp/install_isaac_ros.sh
 # Ref: https://nvidia-isaac-ros.github.io/getting_started/dev_env_setup.html
@@ -174,10 +185,13 @@ COPY --chown=$USERNAME:$USERNAME \
 # Copy User-Based VNC scripts from modules
 COPY --chown=$USERNAME:$USERNAME \
      modules/start_xvfb_vnc.sh /home/$USERNAME/start_xvfb_vnc.sh
+RUN chmod +x /home/$USERNAME/start_xvfb_vnc.sh
 COPY --chown=$USERNAME:$USERNAME \
      modules/stop_xvfb_vnc.sh /home/$USERNAME/stop_xvfb_vnc.sh
+RUN chmod +x /home/$USERNAME/stop_xvfb_vnc.sh
 COPY --chown=$USERNAME:$USERNAME \
      modules/cleanup_vnc.sh /home/$USERNAME/cleanup_vnc.sh
+RUN chmod +x /home/$USERNAME/cleanup_vnc.sh
 # Set execute permissions for VNC scripts
 RUN chmod +x /home/$USERNAME/start_xvfb_vnc.sh \
     && chmod +x /home/$USERNAME/stop_xvfb_vnc.sh \
@@ -188,12 +202,10 @@ RUN chmod +x /home/$USERNAME/start_xvfb_vnc.sh \
 RUN $ISAACSIM_PYTHON_EXE -m pip install --force-reinstall --no-deps "numpy==1.26.0"
 
 # remove NVIDIA ICD file to prevent Vulkan errors
-USER root
 RUN rm -f /etc/vulkan/icd.d/nvidia_icd.json || true \
     && chown -R $USERNAME:$USERNAME /home/$USERNAME \
     && mkdir -p /home/ros2-essentials \
-    && chown -R $USERNAME:$USERNAME /home/ros2-essentials \
-    && deluser $USERNAME sudo
+    && chown -R $USERNAME:$USERNAME /home/ros2-essentials
 
 
 # RUN sudo chown -R $USERNAME:$USERNAME /home/$USERNAME/IsaacLab
