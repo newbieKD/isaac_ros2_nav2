@@ -1,59 +1,6 @@
 name: ros2-h1-ws
-services:
-  # volume-instantiation:
-  #   # Ref: https://github.com/moby/moby/issues/47842#issuecomment-2249050939
-  #   image: ubuntu:22.04
-  #   container_name: ros2-h1-ws-volume-instantiation
-  #   command: bash -c "
-  #       echo 'Creating directories and setting ownership for UID ${USER_UID:-1000}...' &&
-  #       mkdir -p /isaac-sim/cache/{kit,ov,pip,glcache,computecache} &&
-  #       mkdir -p /isaac-sim/{logs,data,documents} &&
-  #       mkdir -p /isaac-sim/standalone/cache/ov &&
-  #       mkdir -p /isaac-sim/standalone/{logs,data} &&
-  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim &&
-  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/cache &&
-  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/cache/{kit,ov,pip,glcache,computecache} &&
-  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/{logs,data,documents} &&
-  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/standalone &&
-  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/standalone/cache &&
-  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/standalone/cache/ov &&
-  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/standalone/{logs,data}
-  #       "
-  #   volumes:
-  #     - isaac-sim-cache:/isaac-sim
-  h1-ws:
-    # depends_on:
-    #   - volume-instantiation
-    build:
-      context: .
-      dockerfile: Dockerfile
-      # TODO: Specify the target platform to build the image, otherwise it will build for the host platform.
-      # Reference: https://docs.docker.com/compose/compose-file/build/#platforms
-      # platforms:
-      #   - "linux/arm64"
-      args:
-        # TODO: Set the USER_UID
-        USER_UID: "${USER_UID:-1000}"
-        # TODO: Set CUDA Toolkit version or set to "" if not using CUDA Toolkit
-        # CUDA_TOOLKIT_VERSION: ""
-        # TODO: Set Isaac Sim version or set to "" if not using Isaac Sim
-        # ISAAC_SIM_VERSION: "4.5.0"
-        # TODO: Set Isaac Lab version or set to "" if not using Isaac Lab
-        # ISAAC_LAB_VERSION: "2.1.0"
-        # TODO: Set Isaac ROS to "" if not using Isaac ROS
-        # ISAAC_ROS: "YES"
-      # cache_from:
-      #   - j3soon/ros2-h1-ws:buildcache-amd64
-      #   - j3soon/ros2-h1-ws:buildcache-arm64
-    image: newbieKD/isaac_sim_lab_ros2_nav2:3.1.0
-    container_name: isaac-workspace
-    stdin_open: true
-    tty: true
-    # TODO: Comment the line below if the workspace don't need to communicate through `/dev/*` devices.
-    privileged: true
-    command: /bin/bash
-    network_mode: host
-    working_dir: /home/ros2-essentials/h1_ws
+
+x-common: &common
     environment:
       # Set X11 server environment variable for existing display.
       - DISPLAY=$DISPLAY
@@ -197,3 +144,109 @@ services:
 #   isaac-sim-cache:
 #     name: ros2-isaac-sim-cache
 #     external: true
+
+# Add new service need change
+#  - ISAAC_SIM_VERSION 
+#  - ISAAC_LAB_VERSION
+#  - env_version
+#  - image
+#  - container_name
+#  - profiles
+#  - services name, ex env320, env500
+
+services:
+  # volume-instantiation:
+  #   # Ref: https://github.com/moby/moby/issues/47842#issuecomment-2249050939
+  #   image: ubuntu:22.04
+  #   container_name: ros2-h1-ws-volume-instantiation
+  #   command: bash -c "
+  #       echo 'Creating directories and setting ownership for UID ${USER_UID:-1000}...' &&
+  #       mkdir -p /isaac-sim/cache/{kit,ov,pip,glcache,computecache} &&
+  #       mkdir -p /isaac-sim/{logs,data,documents} &&
+  #       mkdir -p /isaac-sim/standalone/cache/ov &&
+  #       mkdir -p /isaac-sim/standalone/{logs,data} &&
+  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim &&
+  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/cache &&
+  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/cache/{kit,ov,pip,glcache,computecache} &&
+  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/{logs,data,documents} &&
+  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/standalone &&
+  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/standalone/cache &&
+  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/standalone/cache/ov &&
+  #       chown ${USER_UID:-1000}:${USER_UID:-1000} /isaac-sim/standalone/{logs,data}
+  #       "
+  #   volumes:
+  #     - isaac-sim-cache:/isaac-sim
+  env320:
+    # depends_on:
+    #   - volume-instantiation
+    <<: *common
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # TODO: Specify the target platform to build the image, otherwise it will build for the host platform.
+      # Reference: https://docs.docker.com/compose/compose-file/build/#platforms
+      # platforms:
+      #   - "linux/arm64"
+      args:
+        # TODO: Set the USER_UID
+        USER_UID: "${USER_UID:-1000}"
+        ISAAC_SIM_VERSION: "4.5.0"
+        ISAAC_LAB_VERSION: "2.1.0"
+        env_version: "3.2.0"
+        # TODO: Set CUDA Toolkit version or set to "" if not using CUDA Toolkit
+        # CUDA_TOOLKIT_VERSION: ""
+        # TODO: Set Isaac Sim version or set to "" if not using Isaac Sim
+        # ISAAC_SIM_VERSION: "4.5.0"
+        # TODO: Set Isaac Lab version or set to "" if not using Isaac Lab
+        # ISAAC_LAB_VERSION: "2.1.0"
+        # TODO: Set Isaac ROS to "" if not using Isaac ROS
+        # ISAAC_ROS: "YES"
+      # cache_from:
+      #   - j3soon/ros2-h1-ws:buildcache-amd64
+      #   - j3soon/ros2-h1-ws:buildcache-arm64
+    image: ghcr.io/newbiekd/isaac_ros2_nav2:3.2.0
+    container_name: isaac-workspace-3.2.0
+    stdin_open: true
+    tty: true
+    # TODO: Comment the line below if the workspace don't need to communicate through `/dev/*` devices.
+    privileged: true
+    command: /bin/bash
+    network_mode: host
+    working_dir: /home/ros2-essentials/h1_ws
+    
+    profiles: ["env_320"]
+    
+
+  env500:
+    # depends_on:
+    #   - volume-instantiation
+    <<: *common
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # TODO: Specify the target platform to build the image, otherwise it will build for the host platform.
+      # Reference: https://docs.docker.com/compose/compose-file/build/#platforms
+      # platforms:
+      #   - "linux/arm64"
+      args:
+        # TODO: Set the USER_UID
+        USER_UID: "${USER_UID:-1000}"
+        ISAAC_SIM_VERSION: "5.0.0"
+        ISAAC_LAB_VERSION: "2.2.0"
+        env_version: "5.0.0"
+        # TODO: Set CUDA Toolkit version or set to "" if not using CUDA Toolkit
+        # CUDA_TOOLKIT_VERSION: ""
+        # TODO: Set Isaac ROS to "" if not using Isaac ROS
+        # ISAAC_ROS: "YES"
+    image: ghcr.io/newbiekd/isaac_ros2_nav2:5.0.0
+    container_name: isaac-workspace-5.0.0
+    stdin_open: true
+    tty: true
+    # TODO: Comment the line below if the workspace don't need to communicate through `/dev/*` devices.
+    privileged: true
+    command: /bin/bash
+    network_mode: host
+    working_dir: /home/ros2-essentials/h1_ws
+    
+    profiles: ["env_500"]
+    

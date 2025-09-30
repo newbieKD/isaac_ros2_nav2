@@ -18,11 +18,14 @@ This project integrates Isaac Sim, Isaac Lab, ROS2 (Humble), and Nav2 to facilit
 2.  Build the Docker image:
 
     ```bash
-    docker compose build
+    docker compose --profile env_320 build   # for version 3.2.0
     ```
 
 ### Option 2: Download Pre-built Container
 
+For quick start, we only support after env version 3.2.0
+
+```bash
 Available container versions (Isaac Sim 4.5.0):
 
 | Version | Isaac Lab Version | Description |
@@ -35,6 +38,13 @@ Available container versions (Isaac Sim 4.5.0):
 | 3.0.0   | 2.1.0            | Module docker |
 | 3.1.0   | 2.1.0            | Slim down container |
 | 3.2.0   | 2.1.0            | Add sudo user & ros2 package - pointcloud_to_laserscan|
+
+
+
+Available container versions (Isaac Sim 5.0.0):
+| Version | Isaac Lab Version | Description |
+|---------|-------------------|-------------|
+| 5.0.0   | 2.2.0            | Initial release |
 
 ## Version-Specific Setup Instructions
 

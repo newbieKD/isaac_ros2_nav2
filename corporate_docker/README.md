@@ -95,31 +95,66 @@ corporate_docker/
 
 ## 🚀 Quick Start
 
+
 ### 1. Build the Image
 
+
+<!-- Build the image using the profile that matches the version you want (3.2.0 or 5.0.0). -->
 ```bash
 cd corporate_docker/docker
-docker compose build
+# Choose the build profile for the version you need
+docker compose --profile env_320 build   # build the 3.2.0 image
+# or
+docker compose --profile env_500 build   # build the 5.0.0 image
 ```
+
 
 ### 2. Start the Container (Development Mode)
 
+<!-- Start the container in the background. Use X11 forwarding if you need GUI access from the host. -->
 ```bash
-xhost +local:docker # For X11 forwarding (optional)
-docker compose up -d
+# Allow X11 connections from local docker (only if using host X11)
+xhost +local:docker
+
+# Start the chosen profile in detached mode
+docker compose --profile env_320 up -d --no-build    # start 3.2.0 containers
+# or
+docker compose --profile env_500 up -d --no-build    # start 5.0.0 containers
 ```
 
 ### 3. Enter the Container
-
+<!-- Use compose exec when you started with compose (recommended). If you started a standalone container, use docker exec. -->
 ```bash
-docker compose exec h1-ws bash
+# If you used docker compose
+docker compose exec env320 bash    # enter the env_320 service shell
+# or
+docker compose exec env500 bash    # enter the env_500 service shell
 
+# If you started a standalone container image
+docker exec -it isaac-workspace-3.2.0 bash
 ```
-or
+
+### 3. Stop and clean up
+
+<!-- Properly stop the services and remove containers when finished. -->
 ```bash
-docker exec -it isaac-workspace bash
+# Stop services started by compose
+docker compose --profile env_320 down    # stop and remove containers for env_320
+# or
+docker compose --profile env_500 down
 
+# If you started a single container with docker run, stop it by name or id
+docker stop isaac-workspace-3.2.0
+# or
+docker compose --profile env_320 stop
 ```
+
+### Notes
+
+- Profile names: `env_320` corresponds to the 3.2.0 environment, `env_500` to 5.0.0.
+- Use `docker compose ps` to check service status and `docker logs <service>` for logs.
+- If you need to bind a specific GPU to the container, start with `--gpus 'device=<index or uuid>'` or set `NVIDIA_VISIBLE_DEVICES` in compose.
+
 
 ## 🧪 Complete Test Workflow
 
