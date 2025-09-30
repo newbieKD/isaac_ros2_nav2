@@ -17,7 +17,7 @@ Modularize Isaac Container & Improvements Based on j3soon/ros2-essentials
   * **Added**: Nav2 package installation for ROS2 navigation support.
   * **Added**: X11 VNC support for remote GUI access.
   * **Added**: Default user password set to `0000` for easier initial access.
-  * **Changed**: Removed `sudo` privileges from the container user for better security and enterprise compliance.
+  * **Changed**: Removed `sudo` privileges from the container user for better security and enterprise compliance.(For version 3.1.0)
 
 ## 📑 Table of Contents
 
