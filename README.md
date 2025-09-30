@@ -25,7 +25,7 @@ This project integrates Isaac Sim, Isaac Lab, ROS2 (Humble), and Nav2 to facilit
 
 For quick start, we only support after env version 3.2.0
 
-```bash
+
 Available container versions (Isaac Sim 4.5.0):
 
 | Version | Isaac Lab Version | Description |
@@ -42,9 +42,11 @@ Available container versions (Isaac Sim 4.5.0):
 
 
 Available container versions (Isaac Sim 5.0.0):
+
 | Version | Isaac Lab Version | Description |
 |---------|-------------------|-------------|
 | 5.0.0   | 2.2.0            | Initial release |
+
 
 ## Version-Specific Setup Instructions
 
