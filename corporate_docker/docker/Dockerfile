@@ -59,7 +59,11 @@ RUN chmod +x /tmp/install_ros.sh
 RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
     /tmp/install_ros.sh && rm /tmp/install_ros.sh \
     && chown -R $USERNAME:$USERNAME /opt/ros/$ROS_DISTRO
-
+RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
+    apt-get update && apt-get install -y \
+    libxkbcommon-x11-0 libxcb-xinerama0 libxshmfence1 \
+    libglu1-mesa libgl1-mesa-dri mesa-utils x11-apps \
+    && rm -rf /var/lib/apt/lists/*
 
 
 # Set the CycloneDDS configuration file
@@ -219,6 +223,19 @@ RUN rm -f /etc/vulkan/icd.d/nvidia_icd.json || true \
 #     && chown -R $USERNAME:$USERNAME /home/ros2-essentials
 # Remove sudo privileges from the user for security
 # RUN deluser $USERNAME sudo
+
+# === Prepare Isaac Sim Asset Browser cache structure for universal use ===
+# 建立 OV cache 子目錄 & Asset Browser cache
+RUN mkdir -p /home/$USERNAME/.cache/ov/isaacsim_asset_browser \
+    && mkdir -p /home/$USERNAME/isaacsim/exts/isaacsim.asset.browser/cache \
+    && [ -s /home/$USERNAME/isaacsim/exts/isaacsim.asset.browser/cache/isaacsim.asset.browser.cache.json ] \
+       || echo "{}" > /home/$USERNAME/isaacsim/exts/isaacsim.asset.browser/cache/isaacsim.asset.browser.cache.json \
+    && chown -R $USERNAME:$USERNAME /home/$USERNAME/.cache /home/$USERNAME/isaacsim
+# 可選：設定 Kit 全域 cache_root
+RUN mkdir -p /home/$USERNAME/.nvidia-omniverse/config \
+    && printf "[paths]\ncache_root = \"%s\"\n" "/home/$USERNAME/.cache/ov" \
+    > /home/$USERNAME/.nvidia-omniverse/config/omniverse.toml \
+    && chown -R $USERNAME:$USERNAME /home/$USERNAME/.nvidia-omniverse
 
 USER $USERNAME
 
